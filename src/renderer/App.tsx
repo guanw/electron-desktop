@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { MemoryRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import 'react-pro-sidebar/dist/css/styles.css';
 import './App.css';
 
 const About = () => {
   return (
     <div>
-      <Link to="/">To Home</Link>
+      <Link to="/NewNote">To new note</Link>
     </div>
   );
 };
@@ -36,11 +38,31 @@ const NoteEditor = () => {
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<NoteEditor />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <div style={{ display: 'flex', height: '100vh' }}>
+          <div style={{ flex: 1 }}>
+            <ProSidebar>
+              <Menu iconShape="square">
+                <MenuItem>
+                  New Note
+                  <Link to="/Newnote" />
+                </MenuItem>
+                <MenuItem>
+                  About
+                  <Link to="/About" />
+                </MenuItem>
+              </Menu>
+            </ProSidebar>
+          </div>
+          <div style={{ flex: 5 }}>
+            <Routes>
+              <Route path="/Newnote" element={<NoteEditor />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
+    </>
   );
 }
