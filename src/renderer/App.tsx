@@ -17,18 +17,17 @@ const NoteEditor = () => {
   );
 
   return (
-    <div style={{ display: 'flex', height: '100%', overflowY: 'auto' }}>
-      <div style={{ flex: 1, padding: '1rem' }}>
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <div style={{ flex: 1, padding: '1rem', alignItems: 'stretch' }}>
         <textarea
-          className="form-control"
+          style={{ width: '100%', maxWidth: '100%', height: '90%' }}
           onChange={(event) => {
             setMarkdown(event.target.value);
           }}
           value={markdown}
         />
-        <Link to="/about">to About</Link>
       </div>
-      <div style={{ flex: 1, padding: '1rem' }}>
+      <div style={{ flex: 1, padding: '1rem', alignItems: 'stretch' }}>
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
     </div>
