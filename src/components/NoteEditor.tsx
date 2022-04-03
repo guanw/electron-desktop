@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { AppContext } from '../stateManager/store';
 
 const NoteEditor = () => {
+  const { dispatch } = useContext(AppContext);
   const [markdown, setMarkdown] = useState(
     `# Markdown in react-native is so cool!`
   );
@@ -16,6 +18,14 @@ const NoteEditor = () => {
           }}
           value={markdown}
         />
+        <button
+          onClick={() => {
+            dispatch({ type: 'CREATE', payload: { body: markdown } });
+          }}
+          type="button"
+        >
+          Create
+        </button>
       </div>
       <div style={{ flex: 1, padding: '1rem', alignItems: 'stretch' }}>
         <ReactMarkdown>{markdown}</ReactMarkdown>

@@ -1,20 +1,14 @@
 import { MemoryRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import NoteEditor from '../components/NoteEditor';
+import NotesList from '../components/NotesList';
+import { AppProvider } from '../stateManager/store';
 import 'react-pro-sidebar/dist/css/styles.css';
 import './App.css';
 
-const About = () => {
-  return (
-    <div>
-      <Link to="/NewNote">To new note</Link>
-    </div>
-  );
-};
-
 export default function App() {
   return (
-    <>
+    <AppProvider>
       <Router>
         <div style={{ display: 'flex', height: '100vh' }}>
           <div style={{ flex: 1 }}>
@@ -34,11 +28,11 @@ export default function App() {
           <div style={{ flex: 5 }}>
             <Routes>
               <Route path="/Newnote" element={<NoteEditor />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about" element={<NotesList />} />
             </Routes>
           </div>
         </div>
       </Router>
-    </>
+    </AppProvider>
   );
 }
